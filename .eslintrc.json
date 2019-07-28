@@ -9,6 +9,8 @@
       }
     ],
     "prettier/prettier": "error",
+
+    "import/prefer-default-export": "off",
     "max-len": ["error", 80]
   },
   "env": {
