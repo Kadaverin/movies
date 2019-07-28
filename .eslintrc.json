@@ -9,7 +9,12 @@
       }
     ],
     "prettier/prettier": "error",
-    "max-len": ["error", 80]
+
+    "import/prefer-default-export": "off",
+    "max-len": ["error", 100, 2, {
+      "ignorePattern": "^import\\s.+\\sfrom\\s.+;$",
+      "ignoreUrls": true
+    }]
   },
   "env": {
     "browser": true

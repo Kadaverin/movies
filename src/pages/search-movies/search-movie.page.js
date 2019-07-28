@@ -1,10 +1,12 @@
 import React from 'react';
 import SearchPannel from './components/search-pannel';
+import MoviesList from './components/movies-list';
 
 const SearchMoviePage = () => (
-  <div>
+  <>
     <SearchPannel />
-  </div>
+    <MoviesList />
+  </>
 );
 
 export default SearchMoviePage;
