@@ -1,12 +1,17 @@
 import { put, call, all, takeLatest, select, delay } from 'redux-saga/effects';
 import {
-  moviesFiltersSelector,
-  moviesSorterSelector,
+  // moviesFiltersSelector,
+  // moviesSorterSelector,
   moviesSearchQuerySelector,
 } from './movies.selectors';
 import { MOVIES__SET_SEARCH_QUERY, MOVIES__SEARCH } from './movies.types';
 import { MoviesApiService } from './movies.api-service';
-import { searchMovies, mergeMoviesPagination, setMovies } from './movies.actions';
+import {
+  searchMovies,
+  mergeMoviesPagination,
+  setMovies,
+  searchMoviesError,
+} from './movies.actions';
 
 // function* getMoviesSaga() {
 //   try {
@@ -23,10 +28,10 @@ function* searchMoviesSaga() {
 
     const trimmedQuery = query.trim();
 
-    // if (!trimmedQuery) {
-    //   // todo: clear search results;
-    //   return;
-    // }
+    if (!trimmedQuery) {
+      // todo: clear search results;
+      return;
+    }
 
     const { movies, pagination } = yield call(
       MoviesApiService.search,
@@ -35,10 +40,9 @@ function* searchMoviesSaga() {
 
     yield put(mergeMoviesPagination(pagination));
     yield put(setMovies(movies));
-
-    console.log(movies);
   } catch (error) {
     console.error(error);
+    yield put(searchMoviesError());
   }
 }
 

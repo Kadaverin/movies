@@ -1,12 +1,23 @@
 import React from 'react';
-import SearchPannel from './components/search-pannel';
-import MoviesList from './components/movies-list';
+import { connect } from 'react-redux';
+import { listOf } from 'immutable-prop-types';
 
-const SearchMoviePage = () => (
+import MoviesList from './components/movies-list';
+import { moviesListSelector } from '../../redux/movies/movies.selectors';
+import { moviesPreviewShape } from '../../utils/constants/prop-types/movies';
+
+const SearchMoviePage = ({ movies }) => (
   <>
-    <SearchPannel />
-    <MoviesList />
+    <MoviesList movies={movies} />
   </>
 );
 
-export default SearchMoviePage;
+SearchMoviePage.propTypes = {
+  movies: listOf(moviesPreviewShape).isRequired,
+};
+
+const mapStateToProps = state => ({
+  movies: moviesListSelector(state),
+});
+
+export default connect(mapStateToProps)(SearchMoviePage);

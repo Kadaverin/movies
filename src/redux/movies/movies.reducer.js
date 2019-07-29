@@ -13,6 +13,8 @@ const INIT_VALUES = fromJS({
     [MOVIES_FILTER_NAMES.GENRES]: [],
   },
 
+  searchQuery: '',
+
   sortBy: DEFAULT_MOVIES_SORT_VALUE,
 
   pagination: {
@@ -25,15 +27,11 @@ const INIT_VALUES = fromJS({
 export function moviesReducer(state = INIT_VALUES, { type, payload }) {
   switch (type) {
     case types.MOVIES__SET: {
-      return state
-        .set('ids', fromJS(payload.ids))
-        .set('entities', fromJS(payload.entities));
+      return state.merge(fromJS(payload));
     }
 
     case types.MOVIES__SET_FILTER: {
-      return state.update('filters', filters =>
-        filters.set(payload.name, fromJS(payload.value)),
-      );
+      return state.setIn(['filters', payload.name], fromJS(payload.value));
     }
 
     case types.MOVIES__SET_SEARCH_QUERY: {
@@ -45,9 +43,7 @@ export function moviesReducer(state = INIT_VALUES, { type, payload }) {
     }
 
     case types.MOVIES__MERGE_PAGINATION: {
-      return state.update('pagination', pagination =>
-        pagination.merge(fromJS(payload)),
-      );
+      return state.mergeIn(['pagination'], fromJS(payload));
     }
 
     default:

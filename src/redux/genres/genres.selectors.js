@@ -1,4 +1,4 @@
-export const genresListSelector = ({ Genres }) => Genres.get('list');
+export const genresListSelector = state => state.getIn(['Genres', 'list']);
 
 export const genresJsOptionsSelector = state => {
   const list = genresListSelector(state);

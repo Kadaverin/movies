@@ -1,15 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router/immutable';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import App from './app';
-import { store } from './redux/store';
+import { configureStore } from './redux/store';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 
+const history = createBrowserHistory();
+const store = configureStore(history);
+const theme = createMuiTheme();
+
 const app = (
   <Provider store={store}>
-    <App />
+    <MuiThemeProvider theme={theme}>
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
+    </MuiThemeProvider>
   </Provider>
 );
 
