@@ -11,6 +11,7 @@
     "customize-cra": "^0.4.1",
     "history": "^4.9.0",
     "immutable": "^4.0.0-rc.12",
+    "immutable-prop-types": "^0.0.3",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-app-rewired": "^2.1.3",

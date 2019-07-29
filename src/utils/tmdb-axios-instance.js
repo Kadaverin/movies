@@ -1,9 +1,18 @@
 import axios from 'axios';
-import { TMDB_API_URL, TMDB_API_ACCESS_JWT_TOKEN } from './configs';
+import { TMDB_API_URL, TMDB_API_KEY } from './configs';
 
-export const tmdbAxiosInstance = axios.create({
+const tmdbAxiosInstance = axios.create({
   baseURL: TMDB_API_URL,
-  headers: {
-    Authorization: `Bearer ${TMDB_API_ACCESS_JWT_TOKEN}`,
-  },
 });
+
+tmdbAxiosInstance.interceptors.request.use(config => {
+  if(!config.params) {
+    config.params = {}
+  }
+
+  config.params['api_key'] = TMDB_API_KEY;
+
+  return config;
+});
+
+export { tmdbAxiosInstance };

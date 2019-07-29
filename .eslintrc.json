@@ -11,7 +11,15 @@
     "prettier/prettier": "error",
 
     "import/prefer-default-export": "off",
-    "max-len": ["error", 80]
+    "max-len": [
+      "error",
+      100,
+      2,
+      {
+        "ignorePattern": "^import\\s.+\\sfrom\\s.+;$",
+        "ignoreUrls": true
+      }
+    ]
   },
   "env": {
     "browser": true
