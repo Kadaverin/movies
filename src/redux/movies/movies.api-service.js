@@ -5,9 +5,9 @@ import { extractPagination } from '../../utils/helpers/extract-pagination';
 const SEARCH_MOVIE_URL = '/search/movie';
 
 export class MoviesApiService {
-  static async search(query) {
+  static async search(query, page) {
     const { data } = await tmdbAxiosInstance.get(SEARCH_MOVIE_URL, {
-      params: { query },
+      params: { query, page },
     });
 
     const movies = normalize(data.results);

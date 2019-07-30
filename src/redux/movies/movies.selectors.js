@@ -17,3 +17,21 @@ export function moviesListSelector(state) {
 
   return ids.map(id => entities.get(id.toString()));
 }
+
+export const moviesPaginationSelector = state =>
+  state.getIn(['Movies', 'pagination']);
+
+export const moviesPaginationPageSelector = state =>
+  moviesPaginationSelector(state).get('page');
+
+export const isMoviesLoadingSelector = state =>
+  state.getIn(['Movies', 'UI', 'isLoading']);
+
+export const hasMoviesNextPageSelector = state => {
+  const pagination = moviesPaginationSelector(state);
+
+  return pagination.get('page') < pagination.get('totalPages');
+};
+
+export const canLoadMoreMoviesSelector = state =>
+  !isMoviesLoadingSelector(state) && hasMoviesNextPageSelector(state);

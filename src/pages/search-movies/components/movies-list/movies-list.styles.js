@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useCardListStyles = makeStyles({
   container: {
-    paddingTop: '1rem',
+    padding: '1.5rem 1rem 0.5rem 1rem ',
     width: '100%',
   },
 });

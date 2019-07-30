@@ -6,13 +6,15 @@ const tmdbAxiosInstance = axios.create({
 });
 
 tmdbAxiosInstance.interceptors.request.use(config => {
-  if(!config.params) {
-    config.params = {}
+  const newConfig = { ...config };
+
+  if (!newConfig.params) {
+    newConfig.params = {};
   }
 
-  config.params['api_key'] = TMDB_API_KEY;
+  newConfig.params.api_key = TMDB_API_KEY;
 
-  return config;
+  return newConfig;
 });
 
 export { tmdbAxiosInstance };

@@ -1,4 +1,4 @@
-import { IMAGE_URLS } from './constants/img-urls';
+import { IMAGE_URLS } from '../constants/img-urls';
 
 export const makePosterUrl = tmdbPosterPath =>
   tmdbPosterPath

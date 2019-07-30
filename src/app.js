@@ -11,7 +11,7 @@ import { HeaderContainer } from './common-containers';
 function App({ onGetGenresList }) {
   useEffect(() => {
     onGetGenresList();
-  }, []);
+  }, [onGetGenresList]);
 
   return (
     <>
