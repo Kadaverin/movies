@@ -9,7 +9,7 @@ const INIT_VALUES = fromJS({
   entities: {},
 
   filters: {
-    [MOVIES_FILTER_NAMES.YEAR]: null,
+    [MOVIES_FILTER_NAMES.YEAR]: '',
     [MOVIES_FILTER_NAMES.GENRES]: [],
   },
 

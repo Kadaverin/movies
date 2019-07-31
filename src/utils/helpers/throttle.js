@@ -5,8 +5,11 @@ export const throttle = (callback, limit = 300) => {
   return () => {
     if (!wait) {
       clearTimeout(callbackTiemout);
+
       callback();
+
       wait = true;
+
       setTimeout(() => {
         wait = false;
         callbackTiemout = window.setTimeout(callback, limit);

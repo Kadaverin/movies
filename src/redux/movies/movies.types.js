@@ -23,3 +23,8 @@ export const MOVIES__MERGE_PAGINATION = '[Movies] Merge pagination';
 
 export const MOVIES__GET_MOVIE = '[Movies] Get movie';
 export const MOVIES__ERROR__GET_MOVIE = '[Movies:ERROR] Get movie';
+
+export const MOVIES__DISCOVER_GENRE_CLICK = '[Movies] Discover genre click';
+
+export const MOVIES__DISCOVER = '[Movies] Discover';
+export const MOVIES__ERROR__DISCOVER = '[Movies:ERROR] Discover';
