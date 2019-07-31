@@ -3,6 +3,7 @@ import { normalize } from '../../utils/helpers/normalize';
 import { extractPagination } from '../../utils/helpers/extract-pagination';
 
 const SEARCH_MOVIE_URL = '/search/movie';
+const MOVIE_BASE_URL = '/movie';
 
 export class MoviesApiService {
   static async search(query, page) {
@@ -14,5 +15,11 @@ export class MoviesApiService {
     const pagination = extractPagination(data);
 
     return { movies, pagination };
+  }
+
+  static async getOne(id) {
+    const { data } = await tmdbAxiosInstance.get(`${MOVIE_BASE_URL}/${id}`);
+
+    return data;
   }
 }

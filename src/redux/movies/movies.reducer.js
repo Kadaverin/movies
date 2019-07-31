@@ -1,10 +1,10 @@
-import { fromJS, Set, Map } from 'immutable';
+import { fromJS, Map, OrderedSet } from 'immutable';
 import { DEFAULT_MOVIES_SORT_VALUE } from '../../utils/constants/movies-sort-options';
 import { MOVIES_FILTER_NAMES } from '../../utils/constants/filter-names';
 import * as types from './movies.types';
 
 const INIT_VALUES = fromJS({
-  ids: Set(),
+  ids: OrderedSet(),
 
   entities: {},
 
@@ -30,14 +30,10 @@ const INIT_VALUES = fromJS({
 
 export function moviesReducer(state = INIT_VALUES, { type, payload }) {
   switch (type) {
-    case types.MOVIES__SET: {
-      return state.merge(fromJS(payload));
-    }
-
     case types.MOVIES__CLEAR_ENTITIES: {
       return state.merge(
         Map({
-          ids: Set(),
+          ids: OrderedSet(),
           entities: Map(),
         }),
       );
@@ -50,7 +46,7 @@ export function moviesReducer(state = INIT_VALUES, { type, payload }) {
     }
 
     case types.MOVIES__MERGE_UI: {
-      return state.mergeIn(['UI', fromJS(payload)]);
+      return state.mergeIn(['UI'], fromJS(payload));
     }
 
     case types.MOVIES__SET_FILTER: {
@@ -67,6 +63,10 @@ export function moviesReducer(state = INIT_VALUES, { type, payload }) {
 
     case types.MOVIES__MERGE_PAGINATION: {
       return state.mergeIn(['pagination'], fromJS(payload));
+    }
+
+    case types.MOVIES__CLEAR_SEARCH_QUERY: {
+      return state.set('searchQuery', '');
     }
 
     default:

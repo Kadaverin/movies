@@ -17,8 +17,8 @@ const Header = ({ onSetSearchQuery, searchQuery }) => {
   return (
     <>
       <div className={classes.grow}>
-        <AppBar position="fixed">
-          <Toolbar>
+        <AppBar position="fixed" className={classes.header}>
+          <Toolbar className={classes.toolbar}>
             <IconButton
               edge="start"
               className={classes.menuButton}
@@ -51,7 +51,7 @@ const Header = ({ onSetSearchQuery, searchQuery }) => {
           </Toolbar>
         </AppBar>
       </div>
-      <div className={classes.appBarSpacer} />
+      {/* <div className={classes.appBarSpacer} /> */}
     </>
   );
 };

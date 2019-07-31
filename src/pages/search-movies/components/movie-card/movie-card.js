@@ -2,14 +2,15 @@ import React from 'react';
 import { string, number } from 'prop-types';
 
 import {
-  CardActions,
   Card,
+  CardActions,
   CardActionArea,
   CardContent,
   CardMedia,
   Typography,
 } from '@material-ui/core';
 import { useCardStyles } from './movie-card.styles';
+import { Raiting } from '../../../../common-components';
 
 function MovieCard({
   imgUrl,
@@ -44,12 +45,7 @@ function MovieCard({
         </div>
 
         <CardActions disableSpacing>
-          <Typography variant="body2" color="secondary" component="p">
-            {voteAverage}{' '}
-            <Typography variant="body2" color="textSecondary" component="span">
-              ({voteCount})
-            </Typography>
-          </Typography>
+          <Raiting voteAverage={voteAverage} voteCount={voteCount} />
         </CardActions>
       </CardActionArea>
     </Card>

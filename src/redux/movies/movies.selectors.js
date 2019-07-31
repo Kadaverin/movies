@@ -8,6 +8,9 @@ export const moviesEntitiesSelector = state =>
 
 export const moviesIdsSelector = state => state.getIn(['Movies', 'ids']);
 
+export const movieByIdSelector = (state, { id }) =>
+  moviesEntitiesSelector(state).get(id);
+
 export const moviesSearchQuerySelector = state =>
   state.getIn(['Movies', 'searchQuery']);
 

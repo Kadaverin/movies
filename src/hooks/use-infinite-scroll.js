@@ -5,7 +5,7 @@ function useInfiniteScroll({
   onFetchItems,
   canLoadMore,
   scrollable = false,
-  threshold = 300,
+  threshold = 200,
 }) {
   const ref = useRef();
 
@@ -24,24 +24,24 @@ function useInfiniteScroll({
       window.scrollY + window.innerHeight >=
       list.clientHeight + list.offsetTop - threshold
     );
-  }, [scrollable, threshold]);
+  }, [ref, scrollable, threshold]);
 
   useEffect(() => {
-    const throttleOnScroll = throttle(() => {
+    const throttledOnScroll = throttle(() => {
       if (canLoadMore && ref.current && isValidOffset()) {
         setShouldLoad(true);
       }
-    });
+    }, 300);
 
     const scrollTarget = scrollable ? ref.current : window;
 
     if (scrollTarget) {
-      scrollTarget.addEventListener('scroll', throttleOnScroll);
+      scrollTarget.addEventListener('scroll', throttledOnScroll);
     }
 
     return () => {
       if (scrollTarget) {
-        scrollTarget.removeEventListener('scroll', throttleOnScroll);
+        scrollTarget.removeEventListener('scroll', throttledOnScroll);
       }
     };
   }, [ref, scrollable, canLoadMore, isValidOffset]);

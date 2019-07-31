@@ -1,4 +1,4 @@
-import { tmdbAxiosInstance } from "../../utils/tmdb-axios-instance";
+import { tmdbAxiosInstance } from '../../utils/tmdb-axios-instance';
 
 const GANRES_URL = '/genre/movie/list';
 

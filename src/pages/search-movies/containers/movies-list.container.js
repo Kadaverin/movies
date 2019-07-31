@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { listOf } from 'immutable-prop-types';
-
+import { orderedSetOf } from 'react-immutable-proptypes';
 import { bool, func } from 'prop-types';
+
 import MoviesList from '../components/movies-list';
 import {
   moviesListSelector,
   canLoadMoreMoviesSelector,
 } from '../../../redux/movies/movies.selectors';
-import { moviesPreviewShape } from '../../../utils/constants/prop-types/movies';
+import { moviePreviewShape } from '../../../utils/constants/prop-types/movies';
 import { useInfiniteScroll } from '../../../hooks/use-infinite-scroll';
 import { loadNextSearchMoviesPage } from '../../../redux/movies/movies.actions';
 
@@ -19,14 +19,17 @@ const MoviesListContainer = ({ movies, canLoadMore, onFetchItems }) => {
   });
 
   return (
-    <div ref={containerRef}>
+    <div
+      ref={containerRef}
+      // style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}
+    >
       <MoviesList movies={movies} />
     </div>
   );
 };
 
 MoviesListContainer.propTypes = {
-  movies: listOf(moviesPreviewShape).isRequired,
+  movies: orderedSetOf(moviePreviewShape).isRequired,
   canLoadMore: bool.isRequired,
   onFetchItems: func.isRequired,
 };

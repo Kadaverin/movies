@@ -1,12 +1,12 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
-import { listOf } from 'immutable-prop-types';
+import { orderedSetOf } from 'react-immutable-proptypes';
 import { Link } from 'react-router-dom';
 
 import MovieCard from '../movie-card';
 import { makePosterUrl } from '../../../../utils/helpers/make-poster-url';
 import { useCardListStyles } from './movies-list.styles';
-import { moviesPreviewShape } from '../../../../utils/constants/prop-types/movies';
+import { moviePreviewShape } from '../../../../utils/constants/prop-types/movies';
 import { ROUTES_CREATORS } from '../../../../utils/constants/routes.constants';
 
 function MoviesList({ movies }) {
@@ -37,7 +37,7 @@ function MoviesList({ movies }) {
 }
 
 MoviesList.propTypes = {
-  movies: listOf(moviesPreviewShape).isRequired,
+  movies: orderedSetOf(moviePreviewShape).isRequired,
 };
 
 export default MoviesList;

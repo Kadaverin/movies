@@ -1,18 +1,31 @@
 import { fade, makeStyles } from '@material-ui/core/styles';
 
 export const userHeaderStyles = makeStyles(theme => ({
+  header: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '0 15px',
+  },
+  toolbar: {
+    maxWidth: '1140px',
+    width: '100%',
+  },
+
   grow: {
     flexGrow: 1,
   },
+
   menuButton: {
     marginRight: theme.spacing(2),
   },
+
   title: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
   },
+
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -28,6 +41,7 @@ export const userHeaderStyles = makeStyles(theme => ({
       width: 'auto',
     },
   },
+
   searchIcon: {
     width: theme.spacing(7),
     height: '100%',
@@ -37,9 +51,11 @@ export const userHeaderStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   inputRoot: {
     color: 'inherit',
   },
+
   inputInput: {
     padding: theme.spacing(1, 1, 1, 7),
     transition: theme.transitions.create('width'),
@@ -48,12 +64,14 @@ export const userHeaderStyles = makeStyles(theme => ({
       width: 300,
     },
   },
+
   sectionDesktop: {
     display: 'none',
     [theme.breakpoints.up('md')]: {
       display: 'flex',
     },
   },
+
   sectionMobile: {
     display: 'flex',
     [theme.breakpoints.up('md')]: {
@@ -61,5 +79,5 @@ export const userHeaderStyles = makeStyles(theme => ({
     },
   },
 
-  appBarSpacer: theme.mixins.toolbar,
+  // appBarSpacer: theme.mixins.toolbar,
 }));
