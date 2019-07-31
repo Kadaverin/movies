@@ -5,7 +5,7 @@ import { func } from 'prop-types';
 import { Container } from '@material-ui/core';
 
 import { ROUTES } from './utils/constants/routes.constants';
-import { SearchMoviePage, MoviePage } from './pages';
+import { SearchMoviePage, MoviePage, DiscoverMoviesPage } from './pages';
 import { getGenresList } from './redux/genres/genres.actions';
 import { HeaderContainer } from './common-containers';
 import { useDidMount } from './hooks/lifecircle';
@@ -26,6 +26,7 @@ function App({ onGetGenresList }) {
         <Switch>
           <Route path={ROUTES.MOVIE} component={MoviePage} />
           <Route path={ROUTES.SEARCH_MOVIES} component={SearchMoviePage} />
+          <Route path={ROUTES.DISCOVER_MOVIES} component={DiscoverMoviesPage} />
           <Redirect to={ROUTES.SEARCH_MOVIES} />
         </Switch>
       </Container>
