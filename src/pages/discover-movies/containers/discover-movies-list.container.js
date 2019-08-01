@@ -10,9 +10,9 @@ import {
 } from '../../../redux/movies/movies.selectors';
 import { moviePreviewShape } from '../../../utils/constants/prop-types/movies';
 import { useInfiniteScroll } from '../../../hooks/use-infinite-scroll';
-import { loadNextSearchMoviesPage } from '../../../redux/movies/movies.actions';
+import { loadNextMoviesDiscoveringPage } from '../../../redux/movies/movies.actions';
 
-const MoviesListContainer = ({ movies, canLoadMore, onFetchItems }) => {
+const DiscoverMoviesListContainer = ({ movies, canLoadMore, onFetchItems }) => {
   const containerRef = useInfiniteScroll({
     canLoadMore,
     onFetchItems,
@@ -28,7 +28,7 @@ const MoviesListContainer = ({ movies, canLoadMore, onFetchItems }) => {
   );
 };
 
-MoviesListContainer.propTypes = {
+DiscoverMoviesListContainer.propTypes = {
   movies: orderedSetOf(moviePreviewShape).isRequired,
   canLoadMore: bool.isRequired,
   onFetchItems: func.isRequired,
@@ -39,9 +39,9 @@ const mapStateToProps = state => ({
   canLoadMore: canLoadMoreMoviesSelector(state),
 });
 
-const mapDispatchToProps = { onFetchItems: loadNextSearchMoviesPage };
+const mapDispatchToProps = { onFetchItems: loadNextMoviesDiscoveringPage };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(MoviesListContainer);
+)(DiscoverMoviesListContainer);

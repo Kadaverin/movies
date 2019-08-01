@@ -14,6 +14,9 @@ import {
   MOVIES__GET_MOVIE,
   MOVIES__DISCOVER,
   MOVIES__DISCOVER_GENRE_CLICK,
+  MOVIES__SET_SORTER,
+  MOVIES__SET_FILTER,
+  MOVIES__LOAD_NEXT_ADVANCED_DISCOVERING__PAGE,
 } from './movies.types';
 import { MoviesApiService } from './movies.api-service';
 import {
@@ -31,7 +34,7 @@ import {
 import { isSearchMoviesageSelector } from '../common.js/common.selectors';
 import { ROUTES } from '../../utils/constants/routes.constants';
 import { normalize } from '../../utils/helpers/normalize';
-import { MOVIES_FILTER_NAMES } from '../../utils/constants/filter-names';
+import { MOVIES_FILTER_NAMES } from '../../utils/constants/filters';
 
 function* searchMoviesSaga() {
   try {
@@ -73,6 +76,21 @@ function* loadNextSearchPageSaga() {
 
     yield put(mergeMoviesPagination({ page: pagination.get('page') + 1 }));
     yield put(searchMovies());
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function* loadNextDiscoveringPageSaga() {
+  try {
+    const pagination = yield select(moviesPaginationSelector);
+
+    if (pagination.get('page') === pagination.get('totalPages')) {
+      return;
+    }
+
+    yield put(mergeMoviesPagination({ page: pagination.get('page') + 1 }));
+    yield put(discoverMovies());
   } catch (error) {
     console.error(error);
   }
@@ -135,10 +153,15 @@ function* discoverMoviesSaga() {
   }
 }
 
+function* debounceDiscoverMoviesSaga() {
+  yield delay(300);
+  yield put(clearMoviesEntities());
+  yield put(discoverMovies());
+}
+
 function* discoverGenreSaga({ payload: genreId }) {
   try {
     yield put(setMoviesFilter(MOVIES_FILTER_NAMES.GENRES, [genreId]));
-    yield put(discoverMovies());
     yield put(push(ROUTES.DISCOVER_MOVIES));
   } catch (error) {
     console.error(error);
@@ -150,8 +173,16 @@ export function* moviesSaga() {
     takeLatest(MOVIES__SET_SEARCH_QUERY, debouncedMoviesSearchSaga),
     takeLatest(MOVIES__SEARCH, searchMoviesSaga),
     takeLatest(MOVIES__LOAD_NEXT_SEARCH_PAGE, loadNextSearchPageSaga),
+    takeLatest(
+      MOVIES__LOAD_NEXT_ADVANCED_DISCOVERING__PAGE,
+      loadNextDiscoveringPageSaga,
+    ),
     takeLatest(MOVIES__GET_MOVIE, getMovieSaga),
     takeLatest(MOVIES__DISCOVER_GENRE_CLICK, discoverGenreSaga),
+    takeLatest(
+      [MOVIES__SET_FILTER, MOVIES__SET_SORTER],
+      debounceDiscoverMoviesSaga,
+    ),
     takeLatest(MOVIES__DISCOVER, discoverMoviesSaga),
   ]);
 }

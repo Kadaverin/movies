@@ -1,6 +1,9 @@
 import { fromJS, Map, OrderedSet } from 'immutable';
 import { DEFAULT_MOVIES_SORT_VALUE } from '../../utils/constants/movies-sort-options';
-import { MOVIES_FILTER_NAMES } from '../../utils/constants/filter-names';
+import {
+  MOVIES_FILTER_NAMES,
+  EMPTY_YEAR_FILTER_VAL,
+} from '../../utils/constants/filters';
 import * as types from './movies.types';
 
 const INIT_VALUES = fromJS({
@@ -9,7 +12,7 @@ const INIT_VALUES = fromJS({
   entities: {},
 
   filters: {
-    [MOVIES_FILTER_NAMES.YEAR]: '',
+    [MOVIES_FILTER_NAMES.YEAR]: EMPTY_YEAR_FILTER_VAL,
     [MOVIES_FILTER_NAMES.GENRES]: [],
   },
 

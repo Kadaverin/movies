@@ -4,10 +4,10 @@ import { orderedSetOf } from 'react-immutable-proptypes';
 import { Link } from 'react-router-dom';
 
 import MovieCard from '../movie-card';
-import { makePosterUrl } from '../../../../utils/helpers/make-poster-url';
+import { makePosterUrl } from '../../utils/helpers/make-poster-url';
 import { useCardListStyles } from './movies-list.styles';
-import { moviePreviewShape } from '../../../../utils/constants/prop-types/movies';
-import { ROUTES_CREATORS } from '../../../../utils/constants/routes.constants';
+import { moviePreviewShape } from '../../utils/constants/prop-types/movies';
+import { ROUTES_CREATORS } from '../../utils/constants/routes.constants';
 
 function MoviesList({ movies }) {
   const classes = useCardListStyles();

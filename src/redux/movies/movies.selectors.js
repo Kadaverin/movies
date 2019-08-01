@@ -1,5 +1,3 @@
-import { MOVIES_FILTER_NAMES } from '../../utils/constants/filter-names';
-
 export const moviesFiltersSelector = state => {
   return state.getIn(['Movies', 'filters']);
 };

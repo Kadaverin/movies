@@ -25,16 +25,6 @@ const DiscoverPanelContainer = ({
   onSetMoviesSorter,
   genresOptions,
 }) => {
-  console.log({
-    genresOptions,
-    sorter,
-    filters,
-    onSetMoviesFilter,
-    onSetMoviesSorter,
-  });
-
-  // return null;
-
   return (
     <DiscoverPanel
       sorter={sorter}

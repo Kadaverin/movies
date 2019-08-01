@@ -1,6 +1,5 @@
 import React from 'react';
 import { string, number } from 'prop-types';
-
 import {
   Card,
   CardActions,
@@ -9,8 +8,9 @@ import {
   CardMedia,
   Typography,
 } from '@material-ui/core';
+
+import Raiting from '../raiting';
 import { useCardStyles } from './movie-card.styles';
-import { Raiting } from '../../../../common-components';
 
 function MovieCard({
   imgUrl,

@@ -13,6 +13,10 @@ export const loadNextSearchMoviesPage = () => ({
   type: types.MOVIES__LOAD_NEXT_SEARCH_PAGE,
 });
 
+export const loadNextMoviesDiscoveringPage = () => ({
+  type: types.MOVIES__LOAD_NEXT_ADVANCED_DISCOVERING__PAGE,
+});
+
 export const mergeMoviesUi = uiPartial => ({
   type: types.MOVIES__MERGE_UI,
   payload: uiPartial,

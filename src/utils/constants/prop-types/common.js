@@ -1,4 +1,4 @@
-import { oneOfType, node, arrayOf, shape, any } from 'prop-types';
+import { oneOfType, node, arrayOf, shape, any, string } from 'prop-types';
 
 export const childrenPropType = oneOfType([node, arrayOf(node)]);
 
@@ -8,3 +8,8 @@ export const optionShape = shape({
 });
 
 export const optionsPropType = arrayOf(optionShape);
+
+export const customSelectClassesShape = shape({
+  select: string,
+  option: string,
+});

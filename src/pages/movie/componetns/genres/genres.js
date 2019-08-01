@@ -1,6 +1,7 @@
 import React from 'react';
 import { listOf } from 'react-immutable-proptypes';
 import { func } from 'prop-types';
+import { List } from 'immutable';
 
 import { useGenresStyles } from './genres.styles';
 import { genreShape } from '../../../../utils/constants/prop-types/movies';
@@ -19,7 +20,7 @@ function Genres({ items, onGenreClick }) {
         {genre.get('name')}
       </span>
     ))
-    .interpose(',  ')
+    .interpose(',')
     .toJS();
 
   return <div>{content}</div>;
@@ -31,7 +32,7 @@ Genres.propTypes = {
 };
 
 Genres.defaultProps = {
-  items: [],
+  items: List(),
 };
 
 export default Genres;

@@ -1,7 +1,7 @@
 import { oneOf, number } from 'prop-types';
 import { contains, listOf } from 'react-immutable-proptypes';
 import { MOVIES_SORT_OPTIONS } from '../movies-sort-options';
-import { MOVIES_FILTER_NAMES } from '../filter-names';
+import { MOVIES_FILTER_NAMES } from '../filters';
 
 const MOVIES_SORT_VALUES = MOVIES_SORT_OPTIONS.map(({ value }) => value);
 

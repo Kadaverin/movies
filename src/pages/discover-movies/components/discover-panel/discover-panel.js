@@ -2,8 +2,12 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import { func } from 'prop-types';
 
+import clsx from 'clsx';
 import { FormSelect } from '../../../../common-components';
-import { MOVIES_FILTER_NAMES } from '../../../../utils/constants/filter-names';
+import {
+  MOVIES_FILTER_NAMES,
+  EMPTY_YEAR_FILTER_VAL,
+} from '../../../../utils/constants/filters';
 import {
   moviesSorterPropType,
   moviesFiltersShape,
@@ -11,6 +15,7 @@ import {
 import { optionsPropType } from '../../../../utils/constants/prop-types/common';
 import { MOVIES_YEARS_OPTIONS } from '../../../../utils/constants/movies-years-options';
 import { MOVIES_SORT_OPTIONS } from '../../../../utils/constants/movies-sort-options';
+import { useDiscoverPanelStyles } from './discover-panel.styles';
 
 function DiscoverPanel({
   onFilterChange,
@@ -21,16 +26,19 @@ function DiscoverPanel({
   sortOptions,
   genresOptions,
 }) {
+  const classes = useDiscoverPanelStyles();
+
   return (
-    <Grid container item spacing={8}>
+    <Grid container item spacing={4} className={classes.container}>
       <Grid item>
         <FormSelect
-          options={yearOptions}
-          value={filters.get(MOVIES_FILTER_NAMES.YEAR)}
-          displayEmpty={false}
+          label="Release year"
           name={MOVIES_FILTER_NAMES.YEAR}
-          label="year"
+          value={filters.get(MOVIES_FILTER_NAMES.YEAR)}
+          options={yearOptions}
+          className={classes.select}
           onChange={onFilterChange}
+          noneValue={EMPTY_YEAR_FILTER_VAL}
           withNone
         />
       </Grid>
@@ -38,21 +46,23 @@ function DiscoverPanel({
       <Grid item>
         <FormSelect
           label="Sort by"
-          options={sortOptions}
-          placeholder="sort by"
-          onChange={onSorterChange}
           value={sorter}
+          className={classes.select}
+          options={sortOptions}
+          onChange={onSorterChange}
         />
       </Grid>
 
-      <Grid item>
+      <Grid item className={classes.grow}>
         <FormSelect
-          muliple
-          value={filters.get(MOVIES_FILTER_NAMES.GENRES)}
+          label="With genres"
+          multiple
+          fullWidth
           name={MOVIES_FILTER_NAMES.GENRES}
+          value={filters.get(MOVIES_FILTER_NAMES.GENRES).toJS()}
           options={genresOptions}
-          label="genres"
           onChange={onFilterChange}
+          className={clsx(classes.select, classes.genresSelect)}
         />
       </Grid>
     </Grid>

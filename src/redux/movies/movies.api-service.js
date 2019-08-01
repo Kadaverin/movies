@@ -1,6 +1,7 @@
 import { tmdbAxiosInstance } from '../../utils/tmdb-axios-instance';
 import { normalize } from '../../utils/helpers/normalize';
 import { extractPagination } from '../../utils/helpers/extract-pagination';
+import { MOVIES_FILTER_NAMES } from '../../utils/constants/filters';
 
 const SEARCH_MOVIE_URL = '/search/movie';
 const MOVIE_BASE_URL = '/movie';
@@ -26,7 +27,12 @@ export class MoviesApiService {
 
   static async discover(filters, sorter, page) {
     const { data } = await tmdbAxiosInstance.get(DISCOVER_MOVIES_URL, {
-      params: { ...filters, sort_by: sorter, page },
+      params: {
+        year: filters[MOVIES_FILTER_NAMES.YEAR],
+        with_genres: filters[MOVIES_FILTER_NAMES.GENRES].join(','),
+        sort_by: sorter,
+        page,
+      },
     });
 
     const movies = normalize(data.results);

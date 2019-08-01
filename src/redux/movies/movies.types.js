@@ -17,6 +17,9 @@ export const MOVIES__MERGE_ENTITIES = '[Movies] Merge entities';
 export const MOVIES__CLEAR_ENTITIES = '[Movies] Clear entities';
 export const MOVIES__LOAD_NEXT_SEARCH_PAGE = '[Movies] Load next search page';
 
+export const MOVIES__LOAD_NEXT_ADVANCED_DISCOVERING__PAGE =
+  '[Movies] Load next advanced discovering page';
+
 export const MOVIES__ERROR__GET_LIST = '[Movies:ERROR] Get list';
 
 export const MOVIES__MERGE_PAGINATION = '[Movies] Merge pagination';
