@@ -11,14 +11,10 @@ const SearchMoviePage = ({ onClearSearchQuery }) => {
     onClearSearchQuery();
   });
 
-  return (
-    <>
-      <MoviesListContainer />
-    </>
-  );
+  return <MoviesListContainer />;
 };
 
-SearchMoviePage.propTyps = {
+SearchMoviePage.propTypes = {
   onClearSearchQuery: func.isRequired,
 };
 

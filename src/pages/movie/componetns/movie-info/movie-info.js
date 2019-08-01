@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 
+import { func } from 'prop-types';
 import InfoItem from '../info-item';
 import { Raiting } from '../../../../common-components';
 import { movieShape } from '../../../../utils/constants/prop-types/movies';
@@ -58,6 +59,7 @@ function MovieInfo({ movie, onGenreClick }) {
 
 MovieInfo.propTypes = {
   movie: movieShape.isRequired,
+  onGenreClick: func.isRequired,
 };
 
 export default MovieInfo;

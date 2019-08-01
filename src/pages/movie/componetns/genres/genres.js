@@ -12,6 +12,7 @@ function Genres({ items, onGenreClick }) {
   const content = items
     .map(genre => (
       <span
+        key={genre.get('id')}
         className={classes.genre}
         onClick={() => onGenreClick(genre.get('id'))}
         role="button"

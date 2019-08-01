@@ -42,6 +42,11 @@ export const userHeaderStyles = makeStyles(theme => ({
     },
   },
 
+  genresSelect: {
+    height: '40px',
+    color: 'white',
+  },
+
   searchIcon: {
     width: theme.spacing(7),
     height: '100%',
@@ -64,20 +69,4 @@ export const userHeaderStyles = makeStyles(theme => ({
       width: 300,
     },
   },
-
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-  },
-
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
-
-  // appBarSpacer: theme.mixins.toolbar,
 }));

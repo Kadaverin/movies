@@ -1,3 +1,3 @@
-import HeaderContainer from './header';
+import HeaderContainer from './header.container';
 
 export { HeaderContainer };

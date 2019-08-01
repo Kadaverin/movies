@@ -5,9 +5,9 @@ import { GENRES__GET_LIST } from './genres.types';
 
 function* getGenresListSaga() {
   try {
-    const { data } = yield call(GenresApiService.getList);
+    const genres = yield call(GenresApiService.getList);
 
-    yield put(setGenresList(data.genres));
+    yield put(setGenresList(genres));
   } catch (e) {
     yield put(getGenresListError());
     console.error(e);

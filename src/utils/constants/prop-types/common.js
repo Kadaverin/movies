@@ -12,4 +12,6 @@ export const optionsPropType = arrayOf(optionShape);
 export const customSelectClassesShape = shape({
   select: string,
   option: string,
+  placeholder: string,
+  noneOption: string,
 });

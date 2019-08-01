@@ -1,4 +1,10 @@
 import React from 'react';
+import clsx from 'clsx';
+import {
+  MenuItem,
+  Select as MaterialSelect,
+  OutlinedInput,
+} from '@material-ui/core';
 import {
   node,
   func,
@@ -8,10 +14,10 @@ import {
   array,
   number,
   elementType,
+  shape,
 } from 'prop-types';
-import MenuItem from '@material-ui/core/MenuItem';
-import MaterialSelect from '@material-ui/core/Select';
-import { OutlinedInput } from '@material-ui/core';
+
+import { useSelectStyles } from './select.styles';
 import {
   optionsPropType,
   customSelectClassesShape,
@@ -23,6 +29,7 @@ const Select = ({
   noneText,
   onChange,
   noneValue,
+  placeholder,
   inputProps,
   InputComponent,
   value: selectValue,
@@ -30,6 +37,8 @@ const Select = ({
   customClasses,
   ...rest
 }) => {
+  const classes = useSelectStyles();
+
   let emptySelectVal = noneValue;
 
   if (typeof noneValue === 'undefined') {
@@ -45,10 +54,20 @@ const Select = ({
       multiple={multiple}
       input={input}
       value={selectValue || emptySelectVal}
+      classes={classes}
       {...rest}
     >
+      {placeholder && (
+        <MenuItem value="" disabled className={customClasses.placeholder}>
+          {placeholder}
+        </MenuItem>
+      )}
+
       {withNone && (
-        <MenuItem value={emptySelectVal} className={customClasses.option}>
+        <MenuItem
+          value={emptySelectVal}
+          className={clsx(customClasses.option, customClasses.noneOption)}
+        >
           {noneText}
         </MenuItem>
       )}
@@ -70,13 +89,22 @@ Select.propTypes = {
   noneValue: oneOfType([number, string, array]),
   onChange: func.isRequired,
   options: optionsPropType,
-  value: oneOfType([string, number, array]).isRequired,
+  value: oneOfType([string, number, array]),
   customClasses: customSelectClassesShape,
+  placeholder: node,
+
+  inputProps: shape({
+    name: string,
+    id: string,
+  }),
 };
 
 Select.defaultProps = {
   InputComponent: OutlinedInput,
+  placeholder: null,
   noneValue: undefined,
+  inputProps: {},
+  value: undefined,
   withNone: false,
   multiple: false,
   noneText: 'None',
