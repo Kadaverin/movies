@@ -3,26 +3,33 @@ import { connect } from 'react-redux';
 import { orderedSetOf } from 'react-immutable-proptypes';
 import { bool, func } from 'prop-types';
 
-import { MoviesList } from '../../../common-components';
+import { MoviesList, Loader } from '../../../common-components';
 import {
   moviesListSelector,
   canLoadMoreMoviesSelector,
+  isFirstListLoadingSelector,
 } from '../../../redux/movies/movies.selectors';
 import { moviePreviewShape } from '../../../utils/constants/prop-types/movies';
 import { useInfiniteScroll } from '../../../hooks/use-infinite-scroll';
 import { loadNextSearchMoviesPage } from '../../../redux/movies/movies.actions';
 
-const MoviesListContainer = ({ movies, canLoadMore, onFetchItems }) => {
+const MoviesListContainer = ({
+  movies,
+  canLoadMore,
+  onFetchItems,
+  isFirstLoading,
+}) => {
   const containerRef = useInfiniteScroll({
     canLoadMore,
     onFetchItems,
   });
 
+  if (isFirstLoading) {
+    return <Loader />;
+  }
+
   return (
-    <div
-      ref={containerRef}
-      // style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}
-    >
+    <div ref={containerRef}>
       <MoviesList movies={movies} />
     </div>
   );
@@ -31,12 +38,14 @@ const MoviesListContainer = ({ movies, canLoadMore, onFetchItems }) => {
 MoviesListContainer.propTypes = {
   movies: orderedSetOf(moviePreviewShape).isRequired,
   canLoadMore: bool.isRequired,
+  isFirstLoading: bool.isRequired,
   onFetchItems: func.isRequired,
 };
 
 const mapStateToProps = state => ({
   movies: moviesListSelector(state),
   canLoadMore: canLoadMoreMoviesSelector(state),
+  isFirstLoading: isFirstListLoadingSelector(state),
 });
 
 const mapDispatchToProps = { onFetchItems: loadNextSearchMoviesPage };

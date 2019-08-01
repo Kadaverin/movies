@@ -12,7 +12,7 @@ import { useDidMount } from '../../hooks/lifecircle';
 import { Loader } from '../../common-components';
 import { movieShape } from '../../utils/constants/prop-types/movies';
 import {
-  isMoviesLoadingSelector,
+  isSingleMovieLoadingSelector,
   movieByIdSelector,
 } from '../../redux/movies/movies.selectors';
 
@@ -41,7 +41,7 @@ MoviePage.defaultProps = {
 };
 
 const mapStateToProps = (state, { match }) => ({
-  isLoading: isMoviesLoadingSelector(state),
+  isLoading: isSingleMovieLoadingSelector(state),
   movie: movieByIdSelector(state, { id: match.params.movieId }),
 });
 

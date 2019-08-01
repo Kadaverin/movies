@@ -11,7 +11,11 @@ const SearchMoviePage = ({ onClearSearchQuery }) => {
     onClearSearchQuery();
   });
 
-  return <MoviesListContainer />;
+  return (
+    <>
+      <MoviesListContainer />
+    </>
+  );
 };
 
 SearchMoviePage.propTypes = {

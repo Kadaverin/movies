@@ -1,9 +1,11 @@
 import React from 'react';
+import clsx from 'clsx';
 import { number, string } from 'prop-types';
 import { CircularProgress, Grid } from '@material-ui/core';
+
 import { useLoaderStyles } from './loader.styles';
 
-const Loader = ({ size, align, justify, ...restProps }) => {
+const Loader = ({ size, align, justify, className, ...restProps }) => {
   const classes = useLoaderStyles();
 
   return (
@@ -11,7 +13,7 @@ const Loader = ({ size, align, justify, ...restProps }) => {
       container
       alignItems={align}
       justify={justify}
-      className={classes.wrapper}
+      className={clsx(classes.wrapper, className)}
     >
       <CircularProgress size={size} {...restProps} />
     </Grid>
@@ -22,12 +24,14 @@ Loader.propTypes = {
   size: number,
   align: string,
   justify: string,
+  className: string,
 };
 
 Loader.defaultProps = {
+  className: '',
   align: 'center',
   justify: 'center',
-  size: 50,
+  size: 60,
 };
 
 export default Loader;
