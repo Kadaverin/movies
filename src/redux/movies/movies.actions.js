@@ -61,3 +61,16 @@ export const getMovie = id => ({
 export const getMovieError = () => ({
   type: types.MOVIES__ERROR__GET_MOVIE,
 });
+
+export const discoverGenreClick = genreId => ({
+  type: types.MOVIES__DISCOVER_GENRE_CLICK,
+  payload: genreId,
+});
+
+export const discoverMovies = () => ({
+  type: types.MOVIES__DISCOVER,
+});
+
+export const discoverMoviesError = () => ({
+  type: types.MOVIES__ERROR__DISCOVER,
+});

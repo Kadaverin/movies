@@ -1,18 +1,24 @@
-export const moviesFiltersSelector = state =>
-  state.getIn(['Movies', 'filters']);
+import { MOVIES_FILTER_NAMES } from '../../utils/constants/filter-names';
+
+export const moviesFiltersSelector = state => {
+  return state.getIn(['Movies', 'filters']);
+};
 
 export const moviesSorterSelector = state => state.getIn(['Movies', 'sortBy']);
 
-export const moviesEntitiesSelector = state =>
-  state.getIn(['Movies', 'entities']);
+export const moviesEntitiesSelector = state => {
+  return state.getIn(['Movies', 'entities']);
+};
 
 export const moviesIdsSelector = state => state.getIn(['Movies', 'ids']);
 
-export const movieByIdSelector = (state, { id }) =>
-  moviesEntitiesSelector(state).get(id);
+export const movieByIdSelector = (state, { id }) => {
+  return moviesEntitiesSelector(state).get(id);
+};
 
-export const moviesSearchQuerySelector = state =>
-  state.getIn(['Movies', 'searchQuery']);
+export const moviesSearchQuerySelector = state => {
+  return state.getIn(['Movies', 'searchQuery']);
+};
 
 export function moviesListSelector(state) {
   const ids = moviesIdsSelector(state);
@@ -21,14 +27,17 @@ export function moviesListSelector(state) {
   return ids.map(id => entities.get(id.toString()));
 }
 
-export const moviesPaginationSelector = state =>
-  state.getIn(['Movies', 'pagination']);
+export const moviesPaginationSelector = state => {
+  return state.getIn(['Movies', 'pagination']);
+};
 
-export const moviesPaginationPageSelector = state =>
-  moviesPaginationSelector(state).get('page');
+export const moviesPaginationPageSelector = state => {
+  return moviesPaginationSelector(state).get('page');
+};
 
-export const isMoviesLoadingSelector = state =>
-  state.getIn(['Movies', 'UI', 'isLoading']);
+export const isMoviesLoadingSelector = state => {
+  return state.getIn(['Movies', 'UI', 'isLoading']);
+};
 
 export const hasMoviesNextPageSelector = state => {
   const pagination = moviesPaginationSelector(state);
@@ -36,5 +45,6 @@ export const hasMoviesNextPageSelector = state => {
   return pagination.get('page') < pagination.get('totalPages');
 };
 
-export const canLoadMoreMoviesSelector = state =>
-  !isMoviesLoadingSelector(state) && hasMoviesNextPageSelector(state);
+export const canLoadMoreMoviesSelector = state => {
+  return !isMoviesLoadingSelector(state) && hasMoviesNextPageSelector(state);
+};

@@ -10,8 +10,9 @@ import {
   formatGenres,
 } from '../../../../utils/helpers/formatters';
 import { useMovieInfoStyles } from './movie-info.styles';
+import Genres from '../genres';
 
-function MovieInfo({ movie }) {
+function MovieInfo({ movie, onGenreClick }) {
   const classes = useMovieInfoStyles();
 
   return (
@@ -48,10 +49,9 @@ function MovieInfo({ movie }) {
           content={formatCountries(movie.get('production_countries'))}
         />
 
-        <InfoItem
-          caption="Genres"
-          content={formatGenres(movie.get('genres'))}
-        />
+        <InfoItem caption="Genres">
+          <Genres items={movie.get('genres')} onGenreClick={onGenreClick} />
+        </InfoItem>
 
         <InfoItem caption="Overview" content={movie.get('overview')} />
       </Grid>

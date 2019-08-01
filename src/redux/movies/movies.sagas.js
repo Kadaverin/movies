@@ -1,17 +1,19 @@
 import { put, call, all, takeLatest, select, delay } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import {
-  // moviesFiltersSelector,
-  // moviesSorterSelector,
   moviesSearchQuerySelector,
   moviesPaginationSelector,
   moviesPaginationPageSelector,
+  moviesFiltersSelector,
+  moviesSorterSelector,
 } from './movies.selectors';
 import {
   MOVIES__SET_SEARCH_QUERY,
   MOVIES__SEARCH,
   MOVIES__LOAD_NEXT_SEARCH_PAGE,
   MOVIES__GET_MOVIE,
+  MOVIES__DISCOVER,
+  MOVIES__DISCOVER_GENRE_CLICK,
 } from './movies.types';
 import { MoviesApiService } from './movies.api-service';
 import {
@@ -22,19 +24,14 @@ import {
   mergeMoviesEntities,
   clearMoviesEntities,
   getMovieError,
+  discoverMoviesError,
+  setMoviesFilter,
+  discoverMovies,
 } from './movies.actions';
 import { isSearchMoviesageSelector } from '../common.js/common.selectors';
 import { ROUTES } from '../../utils/constants/routes.constants';
 import { normalize } from '../../utils/helpers/normalize';
-
-// function* getMoviesSaga() {
-//   try {
-//     const filters = yield select(moviesFiltersSelector);
-//     const sorter = yield select(moviesSorterSelector);
-//   } catch (error) {
-//     console.error(error)
-//   }
-// }
+import { MOVIES_FILTER_NAMES } from '../../utils/constants/filter-names';
 
 function* searchMoviesSaga() {
   try {
@@ -113,11 +110,48 @@ function* getMovieSaga({ payload: id }) {
   }
 }
 
+function* discoverMoviesSaga() {
+  try {
+    yield put(mergeMoviesUi({ isLoading: true }));
+
+    const filters = yield select(moviesFiltersSelector);
+    const sorter = yield select(moviesSorterSelector);
+    const page = yield select(moviesPaginationPageSelector);
+
+    const { movies, pagination } = yield call(
+      MoviesApiService.discover,
+      filters.toJS(),
+      sorter,
+      page,
+    );
+
+    yield put(mergeMoviesPagination(pagination));
+    yield put(mergeMoviesEntities(movies));
+  } catch (error) {
+    console.error(error);
+    yield put(discoverMoviesError());
+  } finally {
+    yield put(mergeMoviesUi({ isLoading: false }));
+  }
+}
+
+function* discoverGenreSaga({ payload: genreId }) {
+  try {
+    yield put(setMoviesFilter(MOVIES_FILTER_NAMES.GENRES, [genreId]));
+    yield put(discoverMovies());
+    yield put(push(ROUTES.DISCOVER_MOVIES));
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export function* moviesSaga() {
   yield all([
     takeLatest(MOVIES__SET_SEARCH_QUERY, debouncedMoviesSearchSaga),
     takeLatest(MOVIES__SEARCH, searchMoviesSaga),
     takeLatest(MOVIES__LOAD_NEXT_SEARCH_PAGE, loadNextSearchPageSaga),
     takeLatest(MOVIES__GET_MOVIE, getMovieSaga),
+    takeLatest(MOVIES__DISCOVER_GENRE_CLICK, discoverGenreSaga),
+    takeLatest(MOVIES__DISCOVER, discoverMoviesSaga),
   ]);
 }

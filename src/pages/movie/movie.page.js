@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import { func, bool } from 'prop-types';
 
 import MovieInfo from './componetns/movie-info';
-import { getMovie, clearSearchQuery } from '../../redux/movies/movies.actions';
+import {
+  getMovie,
+  discoverGenreClick,
+} from '../../redux/movies/movies.actions';
 import { matchShape } from '../../utils/constants/prop-types/router';
 import { useDidMount } from '../../hooks/lifecircle';
 import { Loader } from '../../common-components';
@@ -13,24 +16,23 @@ import {
   movieByIdSelector,
 } from '../../redux/movies/movies.selectors';
 
-const MoviePage = ({ match, onClearSearch, onGetMovie, isLoading, movie }) => {
+const MoviePage = ({ match, onGetMovie, isLoading, movie, onGenreClick }) => {
   useDidMount(() => {
     onGetMovie(match.params.movieId);
-    onClearSearch();
   });
 
   if (isLoading || !movie) {
     return <Loader />;
   }
 
-  return <MovieInfo movie={movie} />;
+  return <MovieInfo movie={movie} onGenreClick={onGenreClick} />;
 };
 
 MoviePage.propTypes = {
   isLoading: bool.isRequired,
   match: matchShape.isRequired,
-  onClearSearch: func.isRequired,
   onGetMovie: func.isRequired,
+  onGenreClick: func.isRequired,
   movie: movieShape,
 };
 
@@ -45,7 +47,7 @@ const mapStateToProps = (state, { match }) => ({
 
 const mapDispatchToProps = {
   onGetMovie: getMovie,
-  onClearSearch: clearSearchQuery,
+  onGenreClick: discoverGenreClick,
 };
 
 export default connect(

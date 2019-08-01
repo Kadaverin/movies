@@ -1,1 +1,1 @@
-export { default } from './descover-movies';
+export { default } from './discover-movies';
