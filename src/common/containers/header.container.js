@@ -2,14 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { func, string } from 'prop-types';
 
-import Header from '../common-components/header/header';
-import { moviesSearchQuerySelector } from '../redux/movies/movies.selectors';
-import { optionsPropType } from '../utils/constants/prop-types/common';
-import { genresJsOptionsSelector } from '../redux/genres/genres.selectors';
+import Header from '../components/header/header';
+import { moviesSearchQuerySelector } from '../../redux/movies/movies.selectors';
+import { optionsPropType } from '../../utils/constants/prop-types/common';
+import { genresJsOptionsSelector } from '../../redux/genres/genres.selectors';
 import {
   setSearchQuery,
   discoverGenreClick,
-} from '../redux/movies/movies.actions';
+} from '../../redux/movies/movies.actions';
 
 const HeaderContainer = ({
   searchQuery,

@@ -6,7 +6,7 @@ const TRIGGER_SHOW_PAGE_LOADER_SELECTORS = [isMoviesNextPageLoadingSelector];
 export const pathnameSelector = state =>
   state.getIn(['router', 'location', 'pathname']);
 
-export const isSearchMoviesageSelector = state => {
+export const isSearchMoviesPageSelector = state => {
   return pathnameSelector(state).includes(ROUTES.SEARCH_MOVIES);
 };
 

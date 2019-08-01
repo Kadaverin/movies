@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { orderedSetOf } from 'react-immutable-proptypes';
 import { bool, func } from 'prop-types';
 
-import { MoviesList, Loader } from '../../../common-components';
+import { MoviesList, Loader } from '../../../common/components';
 import {
   moviesListSelector,
   canLoadMoreMoviesSelector,

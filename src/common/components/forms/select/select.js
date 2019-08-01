@@ -21,7 +21,7 @@ import { useSelectStyles } from './select.styles';
 import {
   optionsPropType,
   customSelectClassesShape,
-} from '../../../utils/constants/prop-types/common';
+} from '../../../../utils/constants/prop-types/common';
 
 const Select = ({
   options,

@@ -17,6 +17,8 @@ const INIT_VALUES = fromJS({
 
   entities: {},
 
+  pagination: INIT_PAGINATION,
+
   filters: {
     [MOVIES_FILTER_NAMES.YEAR]: EMPTY_YEAR_FILTER_VAL,
     [MOVIES_FILTER_NAMES.GENRES]: [],
@@ -25,8 +27,6 @@ const INIT_VALUES = fromJS({
   searchQuery: '',
 
   sortBy: DEFAULT_MOVIES_SORT_VALUE,
-
-  pagination: INIT_PAGINATION,
 
   UI: {
     isListLoading: false,

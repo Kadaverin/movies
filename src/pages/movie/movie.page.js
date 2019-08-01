@@ -9,7 +9,7 @@ import {
 } from '../../redux/movies/movies.actions';
 import { matchShape } from '../../utils/constants/prop-types/router';
 import { useDidMount } from '../../hooks/lifecircle';
-import { Loader } from '../../common-components';
+import { Loader } from '../../common/components';
 import { movieShape } from '../../utils/constants/prop-types/movies';
 import {
   isSingleMovieLoadingSelector,

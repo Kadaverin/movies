@@ -3,7 +3,7 @@ import { Grid } from '@material-ui/core';
 import { func } from 'prop-types';
 
 import clsx from 'clsx';
-import { FormSelect } from '../../../../common-components';
+import { FormSelect } from '../../../../common/components';
 import {
   MOVIES_FILTER_NAMES,
   EMPTY_YEAR_FILTER_VAL,

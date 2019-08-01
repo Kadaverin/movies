@@ -3,7 +3,7 @@ import { FormControl, InputLabel } from '@material-ui/core';
 import { string, node, shape, bool } from 'prop-types';
 import clsx from 'clsx';
 import Select from '../select';
-import { customSelectClassesShape } from '../../../utils/constants/prop-types/common';
+import { customSelectClassesShape } from '../../../../utils/constants/prop-types/common';
 import { useLabelStyles } from './form-select.styles';
 
 function FormSelect({

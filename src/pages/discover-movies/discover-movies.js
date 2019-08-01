@@ -1,6 +1,7 @@
 import React from 'react';
-import { Grid } from '@material-ui/core';
 import clsx from 'clsx';
+import { Grid } from '@material-ui/core';
+
 import DiscoverPanelContainer from './containers/discover-panel.container';
 import DiscoverMoviesListContainer from './containers/discover-movies-list.container';
 import { useDiscoverMoviesStyles } from './discover-movies.styles';

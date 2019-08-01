@@ -6,7 +6,7 @@ import { func, string, node } from 'prop-types';
 
 import { userHeaderStyles } from './header.styles';
 import { Select } from '../forms';
-import { optionsPropType } from '../../utils/constants/prop-types/common';
+import { optionsPropType } from '../../../utils/constants/prop-types/common';
 
 const Header = ({
   title,

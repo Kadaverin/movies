@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { throttle } from '../utils/helpers/throttle';
+import throttle from 'lodash.throttle';
 
 function useInfiniteScroll({
   onFetchItems,

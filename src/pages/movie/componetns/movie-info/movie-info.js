@@ -3,7 +3,7 @@ import { Grid } from '@material-ui/core';
 
 import { func } from 'prop-types';
 import InfoItem from '../info-item';
-import { Raiting } from '../../../../common-components';
+import { Raiting } from '../../../../common/components';
 import { movieShape } from '../../../../utils/constants/prop-types/movies';
 import { makePosterUrl } from '../../../../utils/helpers/make-poster-url';
 import { formatCountries } from '../../../../utils/helpers/formatters';

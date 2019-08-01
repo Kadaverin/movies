@@ -31,15 +31,13 @@ import {
   setMoviesFilter,
   discoverMovies,
 } from './movies.actions';
-import { isSearchMoviesageSelector } from '../common.js/common.selectors';
+import { isSearchMoviesPageSelector } from '../common.js/common.selectors';
 import { ROUTES } from '../../utils/constants/routes.constants';
 import { normalize } from '../../utils/helpers/normalize';
 import { MOVIES_FILTER_NAMES } from '../../utils/constants/filters';
 
 function* searchMoviesSaga() {
   try {
-    yield put(mergeMoviesUi({ isListLoading: true }));
-
     const query = yield select(moviesSearchQuerySelector);
     const trimmedQuery = query.trim();
 
@@ -47,6 +45,8 @@ function* searchMoviesSaga() {
       yield put(clearMoviesEntities());
       return;
     }
+
+    yield put(mergeMoviesUi({ isListLoading: true }));
 
     const page = yield select(moviesPaginationPageSelector);
 
@@ -72,11 +72,6 @@ function* loadNextSearchPageSaga() {
     yield put(mergeMoviesUi({ isNextPageLoading: true }));
 
     const pagination = yield select(moviesPaginationSelector);
-
-    // if (pagination.get('page') === pagination.get('totalPages')) {
-    //   return;
-    // }
-
     yield put(mergeMoviesPagination({ page: pagination.get('page') + 1 }));
 
     yield call(searchMoviesSaga);
@@ -90,7 +85,7 @@ function* loadNextSearchPageSaga() {
 function* debouncedMoviesSearchSaga() {
   yield delay(500);
 
-  const isSearchPage = yield select(isSearchMoviesageSelector);
+  const isSearchPage = yield select(isSearchMoviesPageSelector);
 
   if (!isSearchPage) {
     yield put(push(ROUTES.SEARCH_MOVIES));
@@ -145,8 +140,8 @@ function* loadNextDiscoveringPageSaga() {
     yield put(mergeMoviesUi({ isNextPageLoading: true }));
 
     const pagination = yield select(moviesPaginationSelector);
-
     yield put(mergeMoviesPagination({ page: pagination.get('page') + 1 }));
+
     yield call(discoverMoviesSaga);
   } catch (error) {
     console.error(error);
