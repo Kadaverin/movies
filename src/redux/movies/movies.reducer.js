@@ -12,7 +12,7 @@ const INIT_PAGINATION = {
   totalResults: 0,
 };
 
-const INIT_VALUES = fromJS({
+export const INIT_STATE = fromJS({
   ids: OrderedSet(),
 
   entities: {},
@@ -35,7 +35,7 @@ const INIT_VALUES = fromJS({
   },
 });
 
-export function moviesReducer(state = INIT_VALUES, { type, payload }) {
+export function moviesReducer(state = INIT_STATE, { type, payload }) {
   switch (type) {
     case types.MOVIES__CLEAR_ENTITIES: {
       return state.merge(
