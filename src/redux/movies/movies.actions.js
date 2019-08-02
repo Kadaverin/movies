@@ -4,9 +4,13 @@ export const searchMovies = () => ({
   type: types.MOVIES__SEARCH,
 });
 
-export const mergeMoviesEntities = ({ ids, entities }) => ({
-  type: types.MOVIES__MERGE_ENTITIES,
+export const mergeMoviesData = ({ ids, entities }) => ({
+  type: types.MOVIES__MERGE_DATA,
   payload: { ids, entities },
+});
+
+export const clearMoviesData = () => ({
+  type: types.MOVIES__CLEAR_DATA,
 });
 
 export const loadNextSearchMoviesPage = () => ({
@@ -23,25 +27,20 @@ export const mergeMoviesUi = uiPartial => ({
 });
 
 export const setMoviesFilter = (name, value) => ({
-  type: types.MOVIES__SET_FILTER,
+  type: types.MOVIES__SET_DISCOVER_FILTER,
   payload: {
     name,
     value,
   },
 });
 
-export const setMoviesSorter = value => ({
-  type: types.MOVIES__SET_SORTER,
+export const setSearchString = value => ({
+  type: types.MOVIES__SET_SEARCH_STRING,
   payload: value,
 });
 
-export const setSearchQuery = value => ({
-  type: types.MOVIES__SET_SEARCH_QUERY,
-  payload: value,
-});
-
-export const clearSearchQuery = () => ({
-  type: types.MOVIES__CLEAR_SEARCH_QUERY,
+export const clearSearchString = () => ({
+  type: types.MOVIES__CLEAR_SEARCH_STRING,
 });
 
 export const searchMoviesError = () => ({
@@ -51,10 +50,6 @@ export const searchMoviesError = () => ({
 export const mergeMoviesPagination = paginationPartial => ({
   type: types.MOVIES__MERGE_PAGINATION,
   payload: paginationPartial,
-});
-
-export const clearMoviesEntities = () => ({
-  type: types.MOVIES__CLEAR_ENTITIES,
 });
 
 export const getMovie = id => ({

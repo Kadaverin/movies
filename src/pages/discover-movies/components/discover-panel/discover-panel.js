@@ -8,10 +8,7 @@ import {
   MOVIES_FILTER_NAMES,
   EMPTY_YEAR_FILTER_VAL,
 } from '../../../../utils/constants/filters';
-import {
-  moviesSorterPropType,
-  moviesFiltersShape,
-} from '../../../../utils/constants/prop-types/movie-filters';
+import { moviesFiltersShape } from '../../../../utils/constants/prop-types/movie-filters';
 import { optionsPropType } from '../../../../utils/constants/prop-types/common';
 import { MOVIES_YEARS_OPTIONS } from '../../../../utils/constants/movies-years-options';
 import { MOVIES_SORT_OPTIONS } from '../../../../utils/constants/movies-sort-options';
@@ -19,9 +16,7 @@ import { useDiscoverPanelStyles } from './discover-panel.styles';
 
 function DiscoverPanel({
   onFilterChange,
-  onSorterChange,
   filters,
-  sorter,
   yearOptions,
   sortOptions,
   genresOptions,
@@ -46,10 +41,11 @@ function DiscoverPanel({
       <Grid item>
         <FormSelect
           label="Sort by"
-          value={sorter}
+          value={filters.get(MOVIES_FILTER_NAMES.SORT_BY)}
+          name={MOVIES_FILTER_NAMES.SORT_BY}
           className={classes.select}
           options={sortOptions}
-          onChange={onSorterChange}
+          onChange={onFilterChange}
         />
       </Grid>
 
@@ -70,9 +66,7 @@ function DiscoverPanel({
 }
 
 DiscoverPanel.propTypes = {
-  onSorterChange: func.isRequired,
   onFilterChange: func.isRequired,
-  sorter: moviesSorterPropType.isRequired,
   filters: moviesFiltersShape.isRequired,
 
   yearOptions: optionsPropType,

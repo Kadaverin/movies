@@ -25,12 +25,12 @@ export class MoviesApiService {
     return data;
   }
 
-  static async discover(filters, sorter, page) {
+  static async discover(filters, page) {
     const { data } = await tmdbAxiosInstance.get(DISCOVER_MOVIES_URL, {
       params: {
         year: filters[MOVIES_FILTER_NAMES.YEAR],
         with_genres: filters[MOVIES_FILTER_NAMES.GENRES].join(','),
-        sort_by: sorter,
+        sort_by: filters[MOVIES_FILTER_NAMES.SORT_BY],
         page,
       },
     });

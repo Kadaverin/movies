@@ -10,8 +10,8 @@ import { optionsPropType } from '../../../utils/constants/prop-types/common';
 
 const Header = ({
   title,
-  onSetSearchQuery,
-  searchQuery,
+  onSetSearchString,
+  searchString,
   genresOptions,
   onGenreSelected,
 }) => {
@@ -31,9 +31,9 @@ const Header = ({
             </div>
 
             <InputBase
-              value={searchQuery}
+              value={searchString}
               placeholder="Search movies…"
-              onChange={({ target }) => onSetSearchQuery(target.value)}
+              onChange={({ target }) => onSetSearchString(target.value)}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
@@ -58,9 +58,9 @@ const Header = ({
 
 Header.propTypes = {
   title: node,
-  onSetSearchQuery: func.isRequired,
+  onSetSearchString: func.isRequired,
   onGenreSelected: func.isRequired,
-  searchQuery: string.isRequired,
+  searchString: string.isRequired,
   genresOptions: optionsPropType.isRequired,
 };
 

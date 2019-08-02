@@ -1,21 +1,19 @@
 import { put, call, all, takeLatest, select, delay } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import {
-  moviesSearchQuerySelector,
+  moviesSearchStringSelector,
   moviesPaginationSelector,
   moviesPaginationPageSelector,
   moviesFiltersSelector,
-  moviesSorterSelector,
 } from './movies.selectors';
 import {
-  MOVIES__SET_SEARCH_QUERY,
+  MOVIES__SET_SEARCH_STRING,
   MOVIES__SEARCH,
   MOVIES__LOAD_NEXT_SEARCH_PAGE,
   MOVIES__GET_MOVIE,
   MOVIES__DISCOVER,
   MOVIES__DISCOVER_GENRE_CLICK,
-  MOVIES__SET_SORTER,
-  MOVIES__SET_FILTER,
+  MOVIES__SET_DISCOVER_FILTER,
   MOVIES__LOAD_NEXT_ADVANCED_DISCOVERING__PAGE,
 } from './movies.types';
 import { MoviesApiService } from './movies.api-service';
@@ -24,8 +22,8 @@ import {
   mergeMoviesPagination,
   searchMoviesError,
   mergeMoviesUi,
-  mergeMoviesEntities,
-  clearMoviesEntities,
+  mergeMoviesData,
+  clearMoviesData,
   getMovieError,
   discoverMoviesError,
   setMoviesFilter,
@@ -38,11 +36,11 @@ import { MOVIES_FILTER_NAMES } from '../../utils/constants/filters';
 
 function* searchMoviesSaga() {
   try {
-    const query = yield select(moviesSearchQuerySelector);
+    const query = yield select(moviesSearchStringSelector);
     const trimmedQuery = query.trim();
 
     if (!trimmedQuery) {
-      yield put(clearMoviesEntities());
+      yield put(clearMoviesData());
       return;
     }
 
@@ -57,7 +55,7 @@ function* searchMoviesSaga() {
     );
 
     yield put(mergeMoviesPagination(pagination));
-    yield put(mergeMoviesEntities(movies));
+    yield put(mergeMoviesData(movies));
   } catch (error) {
     console.error(error);
 
@@ -91,7 +89,7 @@ function* debouncedMoviesSearchSaga() {
     yield put(push(ROUTES.SEARCH_MOVIES));
   }
 
-  yield put(clearMoviesEntities());
+  yield put(clearMoviesData());
   yield put(searchMovies());
 }
 
@@ -101,7 +99,7 @@ function* getMovieSaga({ payload: id }) {
 
     const movie = yield call(MoviesApiService.getOne, id);
 
-    yield put(mergeMoviesEntities(normalize([movie])));
+    yield put(mergeMoviesData(normalize([movie])));
   } catch (error) {
     yield put(getMovieError());
     console.error(error);
@@ -115,18 +113,17 @@ function* discoverMoviesSaga() {
     yield put(mergeMoviesUi({ isListLoading: true }));
 
     const filters = yield select(moviesFiltersSelector);
-    const sorter = yield select(moviesSorterSelector);
+
     const page = yield select(moviesPaginationPageSelector);
 
     const { movies, pagination } = yield call(
       MoviesApiService.discover,
       filters.toJS(),
-      sorter,
       page,
     );
 
     yield put(mergeMoviesPagination(pagination));
-    yield put(mergeMoviesEntities(movies));
+    yield put(mergeMoviesData(movies));
   } catch (error) {
     console.error(error);
     yield put(discoverMoviesError());
@@ -152,31 +149,28 @@ function* loadNextDiscoveringPageSaga() {
 
 function* debouncedDiscoverMoviesSaga() {
   yield delay(300);
-  yield put(clearMoviesEntities());
+  yield put(clearMoviesData());
   yield put(discoverMovies());
 }
 
 function* discoverGenreSaga({ payload: genreId }) {
-  yield put(clearMoviesEntities());
+  yield put(clearMoviesData());
   yield put(setMoviesFilter(MOVIES_FILTER_NAMES.GENRES, [genreId]));
   yield put(push(ROUTES.DISCOVER_MOVIES));
 }
 
 export function* moviesSaga() {
   yield all([
-    takeLatest(MOVIES__SET_SEARCH_QUERY, debouncedMoviesSearchSaga),
+    takeLatest(MOVIES__GET_MOVIE, getMovieSaga),
+    takeLatest(MOVIES__SET_SEARCH_STRING, debouncedMoviesSearchSaga),
     takeLatest(MOVIES__SEARCH, searchMoviesSaga),
     takeLatest(MOVIES__LOAD_NEXT_SEARCH_PAGE, loadNextSearchPageSaga),
+    takeLatest(MOVIES__DISCOVER, discoverMoviesSaga),
+    takeLatest(MOVIES__SET_DISCOVER_FILTER, debouncedDiscoverMoviesSaga),
     takeLatest(
       MOVIES__LOAD_NEXT_ADVANCED_DISCOVERING__PAGE,
       loadNextDiscoveringPageSaga,
     ),
-    takeLatest(MOVIES__GET_MOVIE, getMovieSaga),
     takeLatest(MOVIES__DISCOVER_GENRE_CLICK, discoverGenreSaga),
-    takeLatest(
-      [MOVIES__SET_FILTER, MOVIES__SET_SORTER],
-      debouncedDiscoverMoviesSaga,
-    ),
-    takeLatest(MOVIES__DISCOVER, discoverMoviesSaga),
   ]);
 }

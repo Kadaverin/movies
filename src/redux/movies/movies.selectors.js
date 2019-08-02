@@ -1,10 +1,12 @@
-// ENTITIES
+// DATA
 
 export const moviesEntitiesSelector = state => {
-  return state.getIn(['Movies', 'entities']);
+  return state.getIn(['Movies', 'data', 'entities']);
 };
 
-export const moviesIdsSelector = state => state.getIn(['Movies', 'ids']);
+export const moviesIdsSelector = state => {
+  return state.getIn(['Movies', 'data', 'ids']);
+};
 
 export const movieByIdSelector = (state, { id }) => {
   return moviesEntitiesSelector(state).get(id);
@@ -36,30 +38,21 @@ export const hasMoviesNextPageSelector = state => {
 
 // //
 
-// FILTERS
-
-export const moviesFiltersSelector = state => {
-  return state.getIn(['Movies', 'filters']);
-};
-
-export const moviesSorterSelector = state => state.getIn(['Movies', 'sortBy']);
-
-export const moviesSearchQuerySelector = state => {
-  return state.getIn(['Movies', 'searchQuery']);
-};
-
-// //
-
 // UI
-export const isMoviesListLoadingSelector = state => {
-  return state.getIn(['Movies', 'UI', 'isListLoading']);
+export const moviesUiSelector = state => {
+  return state.getIn(['Movies', 'UI']);
 };
+
+export const isMoviesListLoadingSelector = state => {
+  return moviesUiSelector(state).get('isListLoading');
+};
+
 export const isMoviesNextPageLoadingSelector = state => {
-  return state.getIn(['Movies', 'UI', 'isNextPageLoading']);
+  return moviesUiSelector(state).get('isNextPageLoading');
 };
 
 export const isSingleMovieLoadingSelector = state => {
-  return state.getIn(['Movies', 'UI', 'isMovieLoading']);
+  return moviesUiSelector(state).get('isMovieLoading');
 };
 
 export const isFirstListLoadingSelector = state => {
@@ -74,4 +67,13 @@ export const canLoadMoreMoviesSelector = state => {
     !isMoviesListLoadingSelector(state) && hasMoviesNextPageSelector(state)
   );
 };
+
 // //
+
+export const moviesFiltersSelector = state => {
+  return state.getIn(['Movies', 'discoverFilters']);
+};
+
+export const moviesSearchStringSelector = state => {
+  return state.getIn(['Movies', 'searchString']);
+};

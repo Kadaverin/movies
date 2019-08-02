@@ -30,8 +30,7 @@
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "lint": "eslint src -c .eslintrc.json --ext js,jsx",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "react-scripts test"
   },
   "browserslist": {
     "production": [
@@ -57,13 +56,6 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.3",
-    "jest": "^24.8.0",
     "prettier": "^1.18.2"
-  },
-  "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>__tests__/setup/setupEnzyme.js",
-    "testPathIgnorePatterns": [
-      "<rootDir>/__tests__/setup/"
-    ]
   }
 }

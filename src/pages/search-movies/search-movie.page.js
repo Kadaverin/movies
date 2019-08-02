@@ -4,11 +4,11 @@ import { func } from 'prop-types';
 
 import MoviesListContainer from './containers/movies-list.container';
 import { useWillUnmount } from '../../hooks/lifecircle';
-import { clearSearchQuery } from '../../redux/movies/movies.actions';
+import { clearSearchString } from '../../redux/movies/movies.actions';
 
-const SearchMoviePage = ({ onClearSearchQuery }) => {
+const SearchMoviePage = ({ onClearSearchString }) => {
   useWillUnmount(() => {
-    onClearSearchQuery();
+    onClearSearchString();
   });
 
   return (
@@ -19,11 +19,11 @@ const SearchMoviePage = ({ onClearSearchQuery }) => {
 };
 
 SearchMoviePage.propTypes = {
-  onClearSearchQuery: func.isRequired,
+  onClearSearchString: func.isRequired,
 };
 
 const mapDispatchToProps = {
-  onClearSearchQuery: clearSearchQuery,
+  onClearSearchString: clearSearchString,
 };
 
 export default connect(

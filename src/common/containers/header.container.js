@@ -3,43 +3,43 @@ import { connect } from 'react-redux';
 import { func, string } from 'prop-types';
 
 import Header from '../components/header/header';
-import { moviesSearchQuerySelector } from '../../redux/movies/movies.selectors';
+import { moviesSearchStringSelector } from '../../redux/movies/movies.selectors';
 import { optionsPropType } from '../../utils/constants/prop-types/common';
 import { genresJsOptionsSelector } from '../../redux/genres/genres.selectors';
 import {
-  setSearchQuery,
+  setSearchString,
   discoverGenreClick,
 } from '../../redux/movies/movies.actions';
 
 const HeaderContainer = ({
-  searchQuery,
-  onSetSearchQuery,
+  searchString,
+  onSetSearchString,
   onGenreSelected,
   genresOptions,
 }) => (
   <Header
-    searchQuery={searchQuery}
-    onSetSearchQuery={onSetSearchQuery}
+    searchString={searchString}
+    onSetSearchString={onSetSearchString}
     onGenreSelected={onGenreSelected}
     genresOptions={genresOptions}
   />
 );
 
 const mapStateToProps = state => ({
-  searchQuery: moviesSearchQuerySelector(state),
+  searchString: moviesSearchStringSelector(state),
   genresOptions: genresJsOptionsSelector(state),
 });
 
 const mapDispatchToProps = {
-  onSetSearchQuery: setSearchQuery,
+  onSetSearchString: setSearchString,
   onGenreSelected: discoverGenreClick,
 };
 
 HeaderContainer.propTypes = {
   genresOptions: optionsPropType.isRequired,
-  onSetSearchQuery: func.isRequired,
+  onSetSearchString: func.isRequired,
   onGenreSelected: func.isRequired,
-  searchQuery: string.isRequired,
+  searchString: string.isRequired,
 };
 
 export default connect(

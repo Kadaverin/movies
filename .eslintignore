@@ -1,7 +1,8 @@
 
 src/registerServiceWorker.js
 node_modules/*
-__tests__/*
+src/__tests__/*
+src/setupTests.js
 public/*
 build/*
 config/*
