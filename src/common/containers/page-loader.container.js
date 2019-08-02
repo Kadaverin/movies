@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bool } from 'prop-types';
 import { PageLoader } from '../components';
-import { isPageLoaderVisibleSelector } from '../../redux/common.js/common.selectors';
+import { isPageLoaderVisibleSelector } from '../../redux/common/common.selectors';
 
 const PageLoaderContainer = ({ isVisible }) => (
   <PageLoader isVisible={isVisible} />

@@ -31,7 +31,7 @@ import {
   setMoviesFilter,
   discoverMovies,
 } from './movies.actions';
-import { isSearchMoviesPageSelector } from '../common.js/common.selectors';
+import { isSearchMoviesPageSelector } from '../common/common.selectors';
 import { ROUTES } from '../../utils/constants/routes.constants';
 import { normalize } from '../../utils/helpers/normalize';
 import { MOVIES_FILTER_NAMES } from '../../utils/constants/filters';
