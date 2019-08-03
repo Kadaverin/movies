@@ -10,8 +10,12 @@ function DiscoverMoviesPage() {
   const classes = useDiscoverMoviesStyles();
 
   return (
-    <Grid container className={clsx(classes.container, classes.grow)}>
-      <Grid item className={classes.grow}>
+    <Grid
+      container
+      direction="column"
+      className={clsx(classes.container, classes.grow)}
+    >
+      <Grid item>
         <DiscoverPanelContainer />
       </Grid>
       <Grid item container className={classes.grow}>

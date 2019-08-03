@@ -30,7 +30,7 @@ function App({ onGetGenresList }) {
           <Route path={ROUTES.MOVIE} component={MoviePage} />
           <Route path={ROUTES.SEARCH_MOVIES} component={SearchMoviePage} />
           <Route path={ROUTES.DISCOVER_MOVIES} component={DiscoverMoviesPage} />
-          <Redirect to={ROUTES.SEARCH_MOVIES} />
+          <Redirect to={ROUTES.DISCOVER_MOVIES} />
         </Switch>
       </Container>
     </>
