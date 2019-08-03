@@ -1,5 +1,4 @@
-import { testNameToKey } from 'jest-snapshot/build/utils';
-import { normalize } from '../../utils/helpers/normalize';
+import { normalize } from '../../../utils/helpers/normalize';
 
 const list = [
   { id: 1, data: 'str' },
@@ -26,7 +25,7 @@ const normalizedByDataKey = {
 };
 
 describe('helpers', () => {
-  describe('normalize', () => {
+  describe('normalize()', () => {
     test("reduces list of objects to object contains 'ids' and 'entities' props", () => {
       expect(normalize(list)).toEqual(normalizedByIdKey);
     });

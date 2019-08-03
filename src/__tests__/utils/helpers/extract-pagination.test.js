@@ -1,7 +1,7 @@
-import { extractPagination } from '../../utils/helpers/extract-pagination';
+import { extractPagination } from '../../../utils/helpers/extract-pagination';
 
 describe('helpers', () => {
-  describe('extractPagination', () => {
+  describe('extractPagination()', () => {
     test('extracts pagination properties from arg object', () => {
       const arg = {
         page: 1,

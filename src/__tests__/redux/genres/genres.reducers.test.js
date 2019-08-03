@@ -20,7 +20,7 @@ describe('genres.reducers', () => {
 
       const action = { type: types.GENRES__SET_LIST, payload: list };
 
-      const newState = genresReducer(state, action);
+      const newState = genresReducer(undefined, action);
 
       const expectedState = fromJS({ list });
 

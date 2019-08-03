@@ -1,9 +1,9 @@
 import { Map } from 'immutable';
 
-import { formatCountries } from '../../utils/helpers/format-countries';
+import { formatCountries } from '../../../utils/helpers/format-countries';
 
 describe('helpers', () => {
-  describe('formatCountries', () => {
+  describe('formatCountries()', () => {
     describe('argument is correct', () => {
       test("formats array with countries maps to string with it's names", () => {
         const countries = [

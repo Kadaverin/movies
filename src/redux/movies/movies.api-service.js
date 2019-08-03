@@ -11,7 +11,7 @@ class MoviesApiService extends BaseApiService {
     return this.get({
       url: SEARCH_MOVIE_URL,
       params: { query, page },
-      responseFormatter: formatNormalizedListData,
+      formatResponse: formatNormalizedListData,
     });
   }
 
@@ -24,7 +24,7 @@ class MoviesApiService extends BaseApiService {
         sort_by: filters[MOVIES_FILTER_NAMES.SORT_BY],
         page,
       },
-      responseFormatter: formatNormalizedListData,
+      formatResponse: formatNormalizedListData,
     });
   }
 }

@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`common component MovieCard mathes shapshot 1`] = `
+<WithStyles(ForwardRef(Card))
+  className="makeStyles-card-1"
+>
+  <WithStyles(ForwardRef(CardActionArea))
+    className="makeStyles-cardActionContent-2"
+  >
+    <div>
+      <WithStyles(ForwardRef(CardMedia))
+        alt="poster"
+        component="img"
+        height={300}
+        image="url"
+      />
+      <WithStyles(ForwardRef(CardContent))>
+        <WithStyles(ForwardRef(Typography))
+          component="h2"
+          gutterBottom={true}
+          variant="h5"
+        >
+          card
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Typography))
+          color="textSecondary"
+          component="p"
+          variant="body2"
+        >
+          2019-07-19
+        </WithStyles(ForwardRef(Typography))>
+      </WithStyles(ForwardRef(CardContent))>
+    </div>
+    <WithStyles(ForwardRef(CardActions))
+      disableSpacing={true}
+    >
+      <Raiting
+        variant="body2"
+        voteAverage={9.2}
+        voteCount={100}
+      />
+    </WithStyles(ForwardRef(CardActions))>
+  </WithStyles(ForwardRef(CardActionArea))>
+</WithStyles(ForwardRef(Card))>
+`;

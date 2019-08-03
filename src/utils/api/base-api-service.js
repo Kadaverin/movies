@@ -1,4 +1,4 @@
-import { tmdbAxiosInstance } from '../tmdb-axios-instance';
+import { tmdbAxiosInstance } from './tmdb-axios-instance';
 
 export class BaseApiService {
   constructor({ baseUrl, apiCaller = tmdbAxiosInstance }) {
@@ -6,7 +6,7 @@ export class BaseApiService {
     this.apiCaller = apiCaller;
   }
 
-  async request({ method, url, params, body, responseFormatter }) {
+  async request({ method, url, params, body, formatResponse }) {
     const { data } = await this.apiCaller.request({
       method,
       url,
@@ -14,21 +14,21 @@ export class BaseApiService {
       body,
     });
 
-    return responseFormatter ? responseFormatter(data) : data;
+    return formatResponse ? formatResponse(data) : data;
   }
 
   get(configs = {}) {
-    const { url = this.baseUrl, params, responseFormatter } = configs;
+    const { url = this.baseUrl, params, formatResponse } = configs;
 
     return this.request({
       method: 'GET',
       url,
       params,
-      responseFormatter,
+      formatResponse,
     });
   }
 
-  getOne(id, responseFormatter) {
-    return this.get({ url: `${this.baseUrl}/${id}`, responseFormatter });
+  getOne(id, formatResponse) {
+    return this.get({ url: `${this.baseUrl}/${id}`, formatResponse });
   }
 }

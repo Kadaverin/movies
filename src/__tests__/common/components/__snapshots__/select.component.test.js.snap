@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`common components Select renders correctly 1`] = `
+<WithStyles(ForwardRef(Select))
+  classes={
+    Object {
+      "icon": "makeStyles-icon-1",
+      "selectMenu": "makeStyles-selectMenu-2",
+    }
+  }
+  input={
+    <ForwardRef(WithStyles)
+      margin="none"
+    />
+  }
+  multiple={false}
+  onChange={[MockFunction]}
+  value=""
+/>
+`;

@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`common component MovieList matches snapshot 1`] = `
+<WithStyles(ForwardRef(Grid))
+  className="makeStyles-container-1"
+  container={true}
+  justify="space-evenly"
+  spacing={2}
+>
+  <WithStyles(ForwardRef(Grid))
+    item={true}
+    key="1"
+  >
+    <Link
+      to="/movies/1"
+    >
+      <MovieCard
+        imgHeight={300}
+        imgUrl="https://image.tmdb.org/t/p/w500/url1"
+        releaseDate="2019-07-19"
+        title="card1"
+        voteAverage={9.2}
+        voteCount={100}
+      />
+    </Link>
+  </WithStyles(ForwardRef(Grid))>
+  <WithStyles(ForwardRef(Grid))
+    item={true}
+    key="2"
+  >
+    <Link
+      to="/movies/2"
+    >
+      <MovieCard
+        imgHeight={300}
+        imgUrl="https://image.tmdb.org/t/p/w500/url2"
+        releaseDate="2019-07-19"
+        title="car21"
+        voteAverage={100}
+        voteCount={1000}
+      />
+    </Link>
+  </WithStyles(ForwardRef(Grid))>
+</WithStyles(ForwardRef(Grid))>
+`;

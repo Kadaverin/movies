@@ -1,9 +1,9 @@
-import { TMDB_BASE_POSTERS_PATH } from '../../utils/configs';
-import { makePosterUrl } from '../../utils/helpers/make-poster-url';
-import { IMAGE_URLS } from '../../utils/constants/img-urls';
+import { TMDB_BASE_POSTERS_PATH } from '../../../utils/configs';
+import { makePosterUrl } from '../../../utils/helpers/make-poster-url';
+import { IMAGE_URLS } from '../../../utils/constants/img-urls';
 
 describe('helpers', () => {
-  describe('makePosterUrl', () => {
+  describe('makePosterUrl()', () => {
     describe('argument is string', () => {
       test('interpolates arhument to string with base posters path', () => {
         const posterpath = 'posrt-uuid';

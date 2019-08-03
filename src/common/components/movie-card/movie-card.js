@@ -11,6 +11,7 @@ import {
 
 import Raiting from '../raiting';
 import { useCardStyles } from './movie-card.styles';
+import { DEFAULT_IMG_HEIGHT } from '../../../utils/constants/movie-card';
 
 function MovieCard({
   imgUrl,
@@ -62,7 +63,7 @@ MovieCard.propTypes = {
 };
 
 MovieCard.defaultProps = {
-  imgHeight: 300,
+  imgHeight: DEFAULT_IMG_HEIGHT,
 };
 
 export default MovieCard;
