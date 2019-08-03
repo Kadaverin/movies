@@ -6,7 +6,7 @@ import InfoItem from '../info-item';
 import { Raiting } from '../../../../common/components';
 import { movieShape } from '../../../../utils/constants/prop-types/movies';
 import { makePosterUrl } from '../../../../utils/helpers/make-poster-url';
-import { formatCountries } from '../../../../utils/helpers/formatters';
+import { formatCountries } from '../../../../utils/helpers/format-countries';
 import { useMovieInfoStyles } from './movie-info.styles';
 import Genres from '../genres';
 

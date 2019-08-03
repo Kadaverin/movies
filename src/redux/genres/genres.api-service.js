@@ -1,11 +1,7 @@
-import { tmdbAxiosInstance } from '../../utils/tmdb-axios-instance';
+import { BaseApiService } from '../../utils/api/base-api-service';
 
 const GANRES_URL = '/genre/movie/list';
 
-export class GenresApiService {
-  static async getList() {
-    const { data } = await tmdbAxiosInstance.get(GANRES_URL);
+class GenresApiService extends BaseApiService {}
 
-    return data.genres;
-  }
-}
+export default new GenresApiService({ baseUrl: GANRES_URL });

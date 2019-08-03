@@ -1,4 +1,3 @@
-import { extractPagination } from '../../utils/helpers/extract-pagination';
 import { TMDB_BASE_POSTERS_PATH } from '../../utils/configs';
 import { makePosterUrl } from '../../utils/helpers/make-poster-url';
 import { IMAGE_URLS } from '../../utils/constants/img-urls';

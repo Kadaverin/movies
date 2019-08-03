@@ -16,7 +16,7 @@ import {
   MOVIES__SET_DISCOVER_FILTER,
   MOVIES__LOAD_NEXT_ADVANCED_DISCOVERING__PAGE,
 } from './movies.types';
-import { MoviesApiService } from './movies.api-service';
+import MoviesApiService from './movies.api-service';
 import {
   searchMovies,
   mergeMoviesPagination,
@@ -48,14 +48,14 @@ function* searchMoviesSaga() {
 
     const page = yield select(moviesPaginationPageSelector);
 
-    const { movies, pagination } = yield call(
-      MoviesApiService.search,
+    const { data, pagination } = yield call(
+      [MoviesApiService, 'search'],
       trimmedQuery,
       page,
     );
 
     yield put(mergeMoviesPagination(pagination));
-    yield put(mergeMoviesData(movies));
+    yield put(mergeMoviesData(data));
   } catch (error) {
     console.error(error);
 
@@ -97,7 +97,7 @@ function* getMovieSaga({ payload: id }) {
   try {
     yield put(mergeMoviesUi({ isMovieLoading: true }));
 
-    const movie = yield call(MoviesApiService.getOne, id);
+    const movie = yield call([MoviesApiService, 'getOne'], id);
 
     yield put(mergeMoviesData(normalize([movie])));
   } catch (error) {
@@ -116,14 +116,14 @@ function* discoverMoviesSaga() {
 
     const page = yield select(moviesPaginationPageSelector);
 
-    const { movies, pagination } = yield call(
-      MoviesApiService.discover,
+    const { data, pagination } = yield call(
+      [MoviesApiService, 'discover'],
       filters.toJS(),
       page,
     );
 
     yield put(mergeMoviesPagination(pagination));
-    yield put(mergeMoviesData(movies));
+    yield put(mergeMoviesData(data));
   } catch (error) {
     console.error(error);
     yield put(discoverMoviesError());

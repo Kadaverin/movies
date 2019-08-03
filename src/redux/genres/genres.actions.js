@@ -4,9 +4,9 @@ export const getGenresList = () => ({
   type: types.GENRES__GET_LIST,
 });
 
-export const setGenresList = list => ({
+export const setGenresList = ({ genres }) => ({
   type: types.GENRES__SET_LIST,
-  payload: list,
+  payload: genres,
 });
 
 export const getGenresListError = () => ({

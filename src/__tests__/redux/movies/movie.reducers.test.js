@@ -9,11 +9,11 @@ import {
   searchStringReducer,
   discoverFiltersReducer,
   uiReducer,
-} from '../../../redux/movies/movies.reducers';
+} from '../../../redux/movies/movies.reducer';
 
 import * as types from '../../../redux/movies/movies.types';
 
-describe('movies.reducers', () => {
+describe('movies.reducer', () => {
   describe('data reducer', () => {
     test('returns correct initial state', () => {
       const expected = fromJS(INIT_DATA);

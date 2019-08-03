@@ -1,7 +1,7 @@
 import { fromJS } from 'immutable';
 import * as types from './genres.types';
 
-const INIT_STATE = fromJS({
+export const INIT_STATE = fromJS({
   list: [],
 });
 
